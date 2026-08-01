@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>対義語ほんやく — 入力した文章をまるごと反対の意味に</title>
+<meta name="description" content="入力した単語や文章を、まるごと対義語に置き換える翻訳サイト。そのまま残したい語句は変換前に選んでおけます。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1><span class="flip">対義語</span>ほんやく</h1>
+    <p class="lead">
+      入力した単語も文章も、まるごと反対の意味に置き換えます。<br>
+      そのまま残したい語句は、変換前に選んでおけます。
+    </p>
+  </header>
+
+  <main>
+    <div class="grid">
+
+      <!-- ① 入力 -->
+      <section class="card">
+        <div class="card-head">
+          <span class="step">1</span>
+          <h2>原文を入力</h2>
+        </div>
+        <label class="sr-only" for="input">変換したい文章</label>
+        <textarea id="input" placeholder="ここに単語や文章を入力してください。&#10;例）今日はとても暑いので、大きい氷をたくさん買いました。" spellcheck="false"></textarea>
+        <div class="btn-row">
+          <button type="button" class="btn" id="sample">例文を入れる</button>
+          <button type="button" class="btn" id="clear">クリア</button>
+          <button type="button" class="btn" id="swap" title="変換結果を原文に移して、もう一度変換します">結果を原文に戻す</button>
+        </div>
+        <div class="stats">
+          <span>文字数 <b id="stat-chars">0</b></span>
+          <span>変換候補 <b id="stat-candidates">0</b> 語</span>
+        </div>
+      </section>
+
+      <!-- ③ 出力（画面上は右側に置くが、手順としては最後） -->
+      <section class="card">
+        <div class="card-head">
+          <span class="step">3</span>
+          <h2>変換結果</h2>
+          <span class="spacer"></span>
+          <label class="toggle"><input type="checkbox" id="highlight" checked> 色分け</label>
+        </div>
+        <div class="output" id="output" aria-live="polite"><span class="empty">ここに変換結果が表示されます。</span></div>
+        <div class="btn-row">
+          <button type="button" class="btn primary" id="copy">結果をコピー</button>
+        </div>
+        <div class="stats">
+          <span>変換した語 <b id="stat-converted">0</b></span>
+          <span>そのまま残した語 <b id="stat-kept">0</b></span>
+        </div>
+      </section>
+    </div>
+
+    <!-- ② そのまま残す設定 -->
+    <section class="card">
+      <div class="card-head">
+        <span class="step">2</span>
+        <h2>そのまま残す語句を選ぶ</h2>
+        <span class="spacer"></span>
+        <label class="toggle" title="URL・メールアドレス・`コード`・#タグ・@ユーザー名を自動で除外します">
+          <input type="checkbox" id="auto-protect" checked> URL・#タグなどを自動で除外
+        </label>
+      </div>
+      <p class="hint">
+        入力した文章から見つかった「変換される語」の一覧です。クリックすると <b>そのまま</b> に切り替わり、変換されなくなります。
+      </p>
+
+      <div class="btn-row" style="margin-top:0">
+        <button type="button" class="btn" id="keep-all">すべてそのままにする</button>
+        <button type="button" class="btn" id="keep-none">すべて変換する</button>
+      </div>
+
+      <p class="subhead">見つかった語（クリックで切り替え）</p>
+      <div class="chips" id="candidates"><p class="empty-note">原文を入力すると、ここに候補が並びます。</p></div>
+
+      <p class="subhead">自分で指定する（単語でも文章でも可）</p>
+      <div class="add-row">
+        <label class="sr-only" for="manual">そのまま残したい語句</label>
+        <input type="text" id="manual" placeholder="例）好きな食べ物は大きいケーキです" autocomplete="off">
+        <button type="button" class="btn primary" id="manual-add">追加</button>
+      </div>
+      <div class="chips" id="manual-list"><p class="empty-note">まだ登録されていません。ここに登録した語句は、文中のどこにあってもそのまま残ります。</p></div>
+    </section>
+
+    <details class="dict">
+      <summary>収録している対義語を見る（<span id="dict-count">0</span> ペア）</summary>
+      <div class="add-row" style="margin-top:12px">
+        <label class="sr-only" for="dict-search">辞書を検索</label>
+        <input type="text" id="dict-search" placeholder="語を検索（例：大きい / happy）" autocomplete="off">
+      </div>
+      <div class="dict-list" id="dict-list"></div>
+    </details>
+  </main>
+
+  <footer>
+    辞書ベースの簡易変換です。文脈によっては不自然になることがあります。<br>
+    入力内容はブラウザの中だけで処理され、どこにも送信されません。
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="src/dictionary.js"></script>
+<script src="src/conjugate.js"></script>
+<script src="src/converter.js"></script>
+<script src="src/app.js"></script>
+</body>
+</html>
