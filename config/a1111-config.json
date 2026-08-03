@@ -1,0 +1,62 @@
+{
+  "_comment": "AUTOMATIC1111 / Forge の settings 上書き用。webui の config.json にマージして使う（tools/apply_config.py が安全にマージする）",
+
+  "samples_format": "png",
+  "grid_format": "png",
+  "jpeg_quality": 95,
+  "save_images_add_number": true,
+  "samples_filename_pattern": "[seed]-[model_name]",
+  "directories_filename_pattern": "[date]",
+  "save_txt": true,
+  "grid_only_if_multiple": true,
+  "enable_pnginfo": true,
+
+  "randn_source": "CPU",
+  "eta_noise_seed_delta": 0,
+  "always_discard_next_to_last_sigma": false,
+  "no_dpmpp_sde_batch_determinism": true,
+  "use_old_emphasis_implementation": false,
+  "use_old_karras_scheduler_sigmas": false,
+  "dont_fix_second_order_samplers_schedule": false,
+
+  "pad_cond_uncond": true,
+  "batch_cond_uncond": true,
+  "upcast_attn": false,
+  "token_merging_ratio": 0,
+  "token_merging_ratio_img2img": 0,
+  "token_merging_ratio_hr": 0,
+
+  "sd_vae": "Automatic",
+  "sd_vae_overrides_per_model_preferences": true,
+  "auto_vae_precision": true,
+  "CLIP_stop_at_last_layers": 1,
+
+  "face_restoration": false,
+  "face_restoration_model": "CodeFormer",
+  "code_former_weight": 0.7,
+
+  "live_previews_enable": false,
+  "show_progress_every_n_steps": -1,
+  "show_progress_type": "Full",
+  "js_live_preview_in_modal_lightbox": false,
+
+  "ESRGAN_tile": 192,
+  "ESRGAN_tile_overlap": 8,
+  "upscaler_for_img2img": "R-ESRGAN 4x+",
+
+  "disable_weights_auto_swap": true,
+  "sd_checkpoints_keep_in_cpu": true,
+  "sd_checkpoint_cache": 0,
+  "sd_vae_checkpoint_cache": 0,
+
+  "img2img_fix_steps": false,
+  "img2img_background_color": "#ffffff",
+  "inpainting_mask_weight": 1.0,
+  "initial_noise_multiplier": 1.0,
+
+  "hires_fix_use_firstpass_conds": false,
+  "hires_fix_refiner_pass": "second pass",
+
+  "localization": "None",
+  "quicksettings_list": ["sd_model_checkpoint", "sd_vae", "CLIP_stop_at_last_layers"]
+}
