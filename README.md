@@ -5,6 +5,10 @@
 
 AUTOMATIC1111 WebUI / Forge 用。Windows・Linux・macOS 対応。
 
+> **とにかく早く画像を作りたい場合は [QUICKSTART.md](QUICKSTART.md) へ。**
+> インストール不要でブラウザから使う方法（0分）から順に並べてあります。
+> このキット本体は「シードを厳密に管理したい」「LoRAを使いたい」段階で必要になります。
+
 ---
 
 ## クイックスタート
