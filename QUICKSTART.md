@@ -42,9 +42,34 @@ Mac の場合は **Draw Things**（App Store・無料）が同等に簡単です
 
 ---
 
-## C. このリポジトリのキット（30〜60分・細かく制御したい人向け）
+## C. WebUI版（AUTOMATIC1111 / Forge）
 
-AUTOMATIC1111 / Forge を使い、シードの再現性やライセンス監査まで管理したい場合。
+LoRA・ControlNet・シード固定など、全部を自分で制御したい場合。
+
+### 自動セットアップ（推奨）
+
+インストール先の検査・取得・起動スクリプト配置・推奨設定の適用・セルフチェックを
+まとめて実行します。
+
+```bash
+git clone https://github.com/Tomohiro284/-.git sd-kit
+cd sd-kit
+python install/setup.py --dir C:\sd\webui
+```
+
+| オプション | 意味 |
+|---|---|
+| `--variant forge` | 本家ではなく Forge（高速版）を入れる |
+| `--preset sd15` | SD1.5 向けのサンプラー設定にする（既定は `sdxl`） |
+| `--python <path>` | Python 3.10 の場所を明示する |
+| `--dry-run` | 何も書き込まずに手順だけ確認する |
+
+**非ASCIIパス・容量不足・git未導入は、何かを書き込む前に検出して中止します。**
+壊れた状態が作られることはありません。
+
+完了後はモデルの配置とGPU別オプションの選択が残ります。画面の案内に従ってください。
+
+### 手動でやる場合
 
 → **[docs/01-setup.md](docs/01-setup.md)** を手順1から
 

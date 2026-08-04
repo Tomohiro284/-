@@ -14,6 +14,9 @@ AUTOMATIC1111 WebUI / Forge 用。Windows・Linux・macOS 対応。
 ## クイックスタート
 
 ```bash
+# 0. WebUI をまとめて導入する（取得・設定・検査を自動実行）
+python install/setup.py --dir "C:\sd\webui"
+
 # 1. 環境を診断する（WebUI導入前でも動きます）
 python tools/doctor.py --webui-dir "C:\sd\webui"
 
@@ -42,6 +45,7 @@ python tools/verify_seed.py
 | `docs/02-troubleshooting.md` | 症状別の原因と対処（ノイズ / 文字化け / バグ） |
 | `docs/03-sampling.md` | シードの再現性とサンプラー設定の解説 |
 | `models/allowlist.md` | 商用利用可モデルの許可リストと、除外すべきモデル |
+| `install/setup.py` | WebUI を1コマンドで導入・設定するセットアップスクリプト |
 | `install/webui-user.bat` | Windows 起動スクリプト（UTF-8固定・GPU別プリセット） |
 | `install/webui-user.sh` | Linux / macOS 起動スクリプト |
 | `config/a1111-config.json` | WebUI 設定の推奨値（サンプラー内部パラメータを固定） |
