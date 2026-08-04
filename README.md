@@ -31,6 +31,10 @@ copy install\webui-user.bat C:\sd\webui\webui-user.bat
 
 # 5. 起動後、シードが本当に再現するか実測で確認する
 python tools/verify_seed.py
+
+# 6. 固定シードのレシピで画像を生成する
+python tools/generate.py --list
+python tools/generate.py portrait-sdxl
 ```
 
 初めての場合は **[docs/01-setup.md](docs/01-setup.md) を手順1から**進めてください。
@@ -55,6 +59,8 @@ python tools/verify_seed.py
 | `tools/license_audit.py` | ライセンス監査。ハッシュ照合で既存モデルも判定 |
 | `tools/apply_config.py` | 設定を既存環境へ安全にマージ適用 |
 | `tools/verify_seed.py` | シードの再現性を実際に生成して検証 |
+| `tools/generate.py` | 固定シードのレシピで画像を生成 |
+| `config/recipes.json` | 用途別の生成パラメータ（seed・steps・CFG を固定） |
 
 ---
 

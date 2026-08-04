@@ -1,0 +1,93 @@
+{
+  "_comment": "検証済みの生成パラメータ一式。seed を固定してあるので、同じモデル・同じVAEなら毎回同じ画像が出る。tools/generate.py で実行する。",
+
+  "_negative_common": "text, watermark, signature, username, artist name, logo, letters, words, caption, subtitles, jpeg artifacts, compression artifacts, noise, grainy, lowres, blurry, out of focus, worst quality, low quality, error, glitch, distorted, deformed, mutated, bad anatomy, bad hands, extra fingers, fewer fingers, extra limbs, missing limbs, cropped, out of frame, duplicate, ugly",
+
+  "recipes": {
+    "portrait-sdxl": {
+      "description": "人物ポートレート（SDXL）。まず1枚出して動作確認するならこれ。",
+      "base_model": "SDXL",
+      "prompt": "professional headshot portrait of a woman in her thirties, natural soft window light, shallow depth of field, detailed skin texture, calm expression, neutral grey background, shot on 85mm lens, f/2.0",
+      "seed": 20240101,
+      "steps": 30,
+      "cfg_scale": 5.0,
+      "width": 832,
+      "height": 1216,
+      "sampler_name": "DPM++ 2M",
+      "scheduler": "Karras",
+      "enable_hr": true,
+      "hr_scale": 1.5,
+      "hr_upscaler": "R-ESRGAN 4x+",
+      "hr_second_pass_steps": 15,
+      "denoising_strength": 0.4
+    },
+
+    "landscape-sdxl": {
+      "description": "風景（SDXL）。破綻しにくく、モデルの素の実力が見える。",
+      "base_model": "SDXL",
+      "prompt": "a serene mountain lake at sunrise, mist over the water, pine forest on the far shore, snow-capped peaks, golden hour light, ultra detailed, high dynamic range landscape photography",
+      "seed": 20240202,
+      "steps": 30,
+      "cfg_scale": 5.5,
+      "width": 1216,
+      "height": 832,
+      "sampler_name": "DPM++ 2M",
+      "scheduler": "Karras",
+      "enable_hr": true,
+      "hr_scale": 1.5,
+      "hr_upscaler": "R-ESRGAN 4x+",
+      "hr_second_pass_steps": 15,
+      "denoising_strength": 0.4
+    },
+
+    "product-sdxl": {
+      "description": "物撮り（SDXL）。商用利用で最も需要が多い用途。人体が無いので破綻が起きにくい。",
+      "base_model": "SDXL",
+      "prompt": "product photography of a ceramic coffee mug on a light wooden table, soft studio lighting, clean white background, subtle shadow, minimal composition, commercial catalog photo, sharp focus",
+      "seed": 20240303,
+      "steps": 32,
+      "cfg_scale": 5.0,
+      "width": 1024,
+      "height": 1024,
+      "sampler_name": "DPM++ 2M",
+      "scheduler": "Karras",
+      "enable_hr": true,
+      "hr_scale": 1.5,
+      "hr_upscaler": "R-ESRGAN 4x+",
+      "hr_second_pass_steps": 16,
+      "denoising_strength": 0.35
+    },
+
+    "portrait-sd15": {
+      "description": "人物ポートレート（SD1.5）。VRAMが少ない環境向け。512基準で生成してHiresで上げる。",
+      "base_model": "SD 1.5",
+      "prompt": "portrait photograph of a young man, natural daylight, soft shadows, detailed eyes, casual shirt, blurred park background, 50mm lens, photorealistic",
+      "seed": 20240404,
+      "steps": 28,
+      "cfg_scale": 7.0,
+      "width": 512,
+      "height": 768,
+      "sampler_name": "DPM++ 2M",
+      "scheduler": "Karras",
+      "enable_hr": true,
+      "hr_scale": 2.0,
+      "hr_upscaler": "R-ESRGAN 4x+",
+      "hr_second_pass_steps": 14,
+      "denoising_strength": 0.4
+    },
+
+    "text-flux": {
+      "description": "画像内に読める英字を入れる（FLUX.1 schnell）。蒸留モデルなのでCFGは1.0固定、ステップは4。Forge / ComfyUI が必要。",
+      "base_model": "FLUX.1 schnell",
+      "prompt": "a rustic wooden shop sign hanging above a cafe door, the sign reads \"OPEN\", warm evening light, shallow depth of field",
+      "seed": 20240505,
+      "steps": 4,
+      "cfg_scale": 1.0,
+      "width": 1024,
+      "height": 1024,
+      "sampler_name": "Euler",
+      "scheduler": "Simple",
+      "enable_hr": false
+    }
+  }
+}
