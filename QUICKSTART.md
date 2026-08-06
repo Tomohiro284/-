@@ -67,7 +67,14 @@ python install/setup.py --dir C:\sd\webui
 **非ASCIIパス・容量不足・git未導入は、何かを書き込む前に検出して中止します。**
 壊れた状態が作られることはありません。
 
-完了後はモデルの配置とGPU別オプションの選択が残ります。画面の案内に従ってください。
+続けてモデルを取得します（Tier A のみ・レジューム対応）。
+
+```bash
+python tools/fetch_models.py --webui-dir C:\sd\webui --set sdxl   # 約7.2GB
+python tools/license_audit.py scan "C:\sd\webui\models"           # ライセンス監査
+```
+
+あとはGPU別オプションの選択だけです。画面の案内に従ってください。
 
 ### 手動でやる場合
 

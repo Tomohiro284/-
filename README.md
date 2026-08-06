@@ -17,7 +17,10 @@ AUTOMATIC1111 WebUI / Forge 用。Windows・Linux・macOS 対応。
 # 0. WebUI をまとめて導入する（取得・設定・検査を自動実行）
 python install/setup.py --dir "C:\sd\webui"
 
-# 1. 環境を診断する（WebUI導入前でも動きます）
+# 1. Tier A（商用可）モデルを取得する
+python tools/fetch_models.py --webui-dir "C:\sd\webui" --set sdxl
+
+# 1b. 環境を診断する（WebUI導入前でも動きます）
 python tools/doctor.py --webui-dir "C:\sd\webui"
 
 # 2. 手持ちのモデルのライセンスを一括監査する
@@ -58,6 +61,7 @@ python tools/generate.py portrait-sdxl
 | `tools/doctor.py` | 起動前セルフチェック。致命的な問題があれば起動を止める |
 | `tools/license_audit.py` | ライセンス監査。ハッシュ照合で既存モデルも判定 |
 | `tools/apply_config.py` | 設定を既存環境へ安全にマージ適用 |
+| `tools/fetch_models.py` | Tier A モデルを正しい場所へダウンロード（レジューム対応） |
 | `tools/verify_seed.py` | シードの再現性を実際に生成して検証 |
 | `tools/generate.py` | 固定シードのレシピで画像を生成 |
 | `config/recipes.json` | 用途別の生成パラメータ（seed・steps・CFG を固定） |
@@ -158,8 +162,13 @@ python tools/license_audit.py scan "C:\sd\webui\models" --quarantine
   civitai.com への通信が遮断されていたため、**実 API に対する疎通確認は未実施**です。
   判定ロジック自体はスタブ応答による単体テストで検証済みです。初回実行時は結果が
   妥当か目視で確認してください。
-- `verify_seed.py` も同様に、開発環境に GPU が無いため**実際の WebUI に対しては未検証**です。
-  モック API サーバーを立てて、再現性の破れ・シード無視・バッチずれをそれぞれ正しく
-  検出できることは確認済みです。
+- `verify_seed.py` と `generate.py` は、開発環境に GPU が無いため**実際の WebUI に
+  対しては未検証**です。モック API サーバーを立てて、再現性の破れ・シード無視・
+  バッチずれ・旧API へのフォールバックを正しく扱えることは確認済みです。
+- `fetch_models.py` も配布元が遮断されていたため**実ダウンロードは未検証**です。
+  レジューム判定・破損サイズの検出・既存ファイルのスキップ・失敗時の案内は
+  確認済みです。
+- `install/setup.py` は AUTOMATIC1111 の**実リポジトリを clone して全経路を確認済み**です
+  （取得・既存 webui-user の退避・設定89項目の適用・セルフチェックまで）。
 - シードが再現するのは**モデルとVAEが同一の場合のみ**です。シードは「同じモデルに
   対する同じ乱数」でしかないため、モデルを変えれば同じシードでも別の絵になります。
