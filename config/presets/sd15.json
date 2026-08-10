@@ -1,0 +1,37 @@
+{
+  "_name": "SD 1.5 系",
+  "_note": "SDXLより解像度が低い。512基準で生成してHires.fixで上げるのが最も破綻しない。アニメ系モデルを使う場合のみ CLIP_stop_at_last_layers を 2 にすること（学習時の設定に合わせる必要がある）。",
+
+  "config": {
+    "CLIP_stop_at_last_layers": 1,
+    "sd_vae": "vae-ft-mse-840000-ema-pruned.safetensors"
+  },
+
+  "ui-config": {
+    "txt2img/Sampling method/value": "DPM++ 2M",
+    "txt2img/Schedule type/value": "Karras",
+    "txt2img/Sampling steps/value": 28,
+    "txt2img/Sampling steps/minimum": 20,
+    "txt2img/Sampling steps/maximum": 50,
+
+    "txt2img/CFG Scale/value": 7.0,
+    "txt2img/CFG Scale/minimum": 4.0,
+    "txt2img/CFG Scale/maximum": 11.0,
+
+    "txt2img/Width/value": 512,
+    "txt2img/Height/value": 768,
+
+    "txt2img/Upscaler/value": "R-ESRGAN 4x+",
+    "txt2img/Hires steps/value": 14,
+    "txt2img/Denoising strength/value": 0.4,
+    "txt2img/Upscale by/value": 2.0,
+
+    "img2img/Sampling method/value": "DPM++ 2M",
+    "img2img/Schedule type/value": "Karras",
+    "img2img/Sampling steps/value": 28,
+    "img2img/CFG Scale/value": 7.0,
+    "img2img/Denoising strength/value": 0.45,
+    "img2img/Width/value": 512,
+    "img2img/Height/value": 768
+  }
+}
