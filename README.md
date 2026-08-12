@@ -19,7 +19,7 @@ python3 -m http.server 8000
 # → http://localhost:8000/
 ```
 
-GitHub Pages にそのまま公開できます（Settings → Pages → Branch を選ぶだけ）。
+インターネットへの公開手順は「[インターネットに公開する](#インターネットに公開する)」を参照してください。
 
 ## 画面の流れ
 
@@ -61,14 +61,102 @@ GitHub Pages にそのまま公開できます（Settings → Pages → Branch �
 ## ファイル構成
 
 ```
-index.html          画面
+index.html          変換ツール（トップページ）
+guide.html          使い方
+about.html          このサイトについて / 運営者情報
+privacy.html        プライバシーポリシー
+terms.html          利用規約
+contact.html        お問い合わせ
+404.html            ページが見つからないとき
+
 assets/style.css    スタイル（ダークモード対応）
+src/site-config.js  公開URL・運営者情報・広告IDの設定 ★公開前に編集
+src/ads.js          広告枠の描画
 src/dictionary.js   対義語ペアの辞書（約 470 ペア）
 src/conjugate.js    活用形の展開
 src/converter.js    変換エンジン（DOM 非依存）
 src/app.js          画面まわりの処理
+
+robots.txt          クローラー向けの指示
+sitemap.xml         サイトマップ
+ads.txt             広告枠の販売者宣言（AdSense 用のひな形）
 tests/run.js        変換エンジンのテスト
+.github/workflows/pages.yml   テスト＋GitHub Pages への自動公開
 ```
+
+## インターネットに公開する
+
+GitHub Pages で無料で公開できます。サーバーの用意は不要です。
+
+1. GitHub の **Settings → Pages** を開く
+2. **Source** を `GitHub Actions` にする
+3. `main` ブランチに push する（`.github/workflows/pages.yml` が走ります）
+
+公開URLは `https://<ユーザー名>.github.io/<リポジトリ名>/` です。
+ワークフローはプルリクではテストのみ、`main` への push で公開まで行います。
+
+### 公開URLを変えるとき
+
+独自ドメインを使う場合など、URL を変えたら 2 か所を書き換えます。
+
+```sh
+OLD="https://tomohiro284.github.io/-/"
+NEW="https://example.com/"
+sed -i "s|$OLD|$NEW|g" src/site-config.js *.html robots.txt sitemap.xml
+```
+
+独自ドメインは GitHub の **Settings → Pages → Custom domain** で設定し、
+DNS 側に CNAME レコードを追加します。
+
+## 広告を掲載する（収益化）
+
+広告枠は最初から用意してあります。`src/site-config.js` の `adsense.client` が
+空のあいだは**広告枠ごと非表示**になるので、審査前でもレイアウトは崩れません。
+
+### 手順
+
+1. **先にサイトを公開する** — 審査には稼働中のURLが必要です
+2. [Google AdSense](https://adsense.google.com/) に申し込み、サイトを追加する
+3. AdSense から渡される確認コードを設置する
+   → `src/site-config.js` の `adsense.client` に `ca-pub-...` を入れるだけで、
+     全ページに読み込みタグが入ります
+4. 審査に通ったら **ads.txt** を有効化する
+   → `ads.txt` のコメントを外し、自分のパブリッシャーIDに置き換える
+5. AdSense で「ディスプレイ広告」を 2 つ作り、スロットIDを設定に入れる
+
+```js
+adsense: {
+  client: 'ca-pub-1234567890123456',
+  slots: {
+    content: '1234567890', // 記事の途中
+    footer:  '0987654321', // ページ下部
+  },
+},
+```
+
+広告枠の位置は各 HTML の以下のタグです。増やしたいときはこれをコピーします。
+
+```html
+<div class="ad-slot" data-ad-slot="content"></div>
+```
+
+### 審査について
+
+AdSense は「独自の価値あるコンテンツ」を求めます。ツール1ページだけのサイトは
+**「価値の低い広告枠（コンテンツが不十分）」で不承認になりやすい**点に注意してください。
+本リポジトリでは対策として、審査で確認されやすい次のページを用意してあります。
+
+| 用意済み | 内容 |
+| --- | --- |
+| プライバシーポリシー | Cookie・第三者配信広告についての記載を含む |
+| 利用規約 | 利用条件・禁止事項・免責事項 |
+| お問い合わせ | 連絡先の明示 |
+| このサイトについて | 運営者情報 |
+| 使い方 | 読み物としての本文コンテンツ |
+
+そのうえで、**`src/site-config.js` の `owner` と `email` を必ず実在の値に更新してください**
+（未設定のままだと運営者情報が空になり、審査で不利になります）。
+承認率を上げたい場合は、対義語にまつわる解説記事などを数本追加するのが有効です。
 
 ## 辞書を増やす
 

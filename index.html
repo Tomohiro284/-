@@ -5,8 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>対義語ほんやく — 入力した文章をまるごと反対の意味に</title>
 <meta name="description" content="入力した単語や文章を、まるごと対義語に置き換える翻訳サイト。そのまま残したい語句は変換前に選んでおけます。">
+<link rel="canonical" href="https://tomohiro284.github.io/-/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="対義語ほんやく">
+<meta property="og:title" content="対義語ほんやく — 入力した文章をまるごと反対の意味に">
+<meta property="og:description" content="入力した単語や文章を、まるごと対義語に置き換える無料の変換ツール。そのまま残したい語句は変換前に選んでおけます。">
+<meta property="og:url" content="https://tomohiro284.github.io/-/">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
 <link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "対義語ほんやく",
+  "url": "https://tomohiro284.github.io/-/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web",
+  "inLanguage": "ja",
+  "description": "入力した単語や文章を、まるごと対義語に置き換える無料の変換ツール。",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" }
+}
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -17,6 +38,14 @@
       入力した単語も文章も、まるごと反対の意味に置き換えます。<br>
       そのまま残したい語句は、変換前に選んでおけます。
     </p>
+    <nav class="site-nav" aria-label="サイト内メニュー">
+      <a href="index.html" aria-current="page">変換ツール</a>
+      <a href="guide.html">使い方</a>
+      <a href="about.html">このサイトについて</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
   </header>
 
   <main>
@@ -91,6 +120,8 @@
       <div class="chips" id="manual-list"><p class="empty-note">まだ登録されていません。ここに登録した語句は、文中のどこにあってもそのまま残ります。</p></div>
     </section>
 
+    <div class="ad-slot" data-ad-slot="content"></div>
+
     <details class="dict">
       <summary>収録している対義語を見る（<span id="dict-count">0</span> ペア）</summary>
       <div class="add-row" style="margin-top:12px">
@@ -99,19 +130,40 @@
       </div>
       <div class="dict-list" id="dict-list"></div>
     </details>
+
+    <section class="card" style="margin-top:18px">
+      <div class="card-head"><h2>このツールについて</h2></div>
+      <p class="hint" style="margin:0">
+        入力した単語や文章を、辞書にもとづいてまるごと対義語に置き換えます。会員登録もインストールも不要で、
+        入力内容はブラウザの中だけで処理されます。変換したくない語句を事前に選んでおけるのが特徴です。
+        詳しい手順や、変換できる語の種類は<a href="guide.html">使い方のページ</a>で説明しています。
+      </p>
+    </section>
+
+    <div class="ad-slot" data-ad-slot="footer"></div>
   </main>
 
   <footer>
+    <div class="foot-links">
+      <a href="guide.html">使い方</a>
+      <a href="about.html">このサイトについて</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
+      <a href="contact.html">お問い合わせ</a>
+    </div>
     辞書ベースの簡易変換です。文脈によっては不自然になることがあります。<br>
-    入力内容はブラウザの中だけで処理され、どこにも送信されません。
+    入力内容はブラウザの中だけで処理され、どこにも送信されません。<br>
+    © 2026 対義語ほんやく
   </footer>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="src/site-config.js"></script>
 <script src="src/dictionary.js"></script>
 <script src="src/conjugate.js"></script>
 <script src="src/converter.js"></script>
 <script src="src/app.js"></script>
+<script src="src/ads.js"></script>
 </body>
 </html>

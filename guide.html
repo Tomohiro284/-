@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>使い方 | 対義語ほんやく</title>
+<meta name="description" content="対義語ほんやくの使い方。文章をまるごと対義語に変換する手順と、変換したくない語句をそのまま残す方法を説明します。">
+<link rel="canonical" href="https://tomohiro284.github.io/-/guide.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="対義語ほんやく">
+<meta property="og:title" content="使い方 | 対義語ほんやく">
+<meta property="og:description" content="対義語ほんやくの使い方。文章をまるごと対義語に変換する手順と、変換したくない語句をそのまま残す方法を説明します。">
+<meta property="og:url" content="https://tomohiro284.github.io/-/guide.html">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1><a href="index.html" style="color:inherit;text-decoration:none"><span class="flip">対義語</span>ほんやく</a></h1>
+    <p class="lead">入力した文章をまるごと反対の意味に置き換えるツールの使い方です。</p>
+  <nav class="site-nav" aria-label="サイト内メニュー">
+    <a href="index.html">変換ツール</a>
+    <a href="guide.html" aria-current="page">使い方</a>
+    <a href="about.html">このサイトについて</a>
+    <a href="privacy.html">プライバシーポリシー</a>
+    <a href="terms.html">利用規約</a>
+    <a href="contact.html">お問い合わせ</a>
+  </nav>
+  </header>
+
+  <main class="page">
+    <h2>3ステップで変換する</h2>
+    <p>
+      このサイトは、入力した単語や文章を辞書にもとづいて対義語に置き換えるツールです。
+      会員登録もインストールも必要ありません。<a href="index.html">変換ツール</a>を開いて、次の順に操作します。
+    </p>
+    <ol>
+      <li><b>原文を入力する</b> — 単語だけでも、複数行の文章でも構いません。入力しながらリアルタイムに変換されます。</li>
+      <li><b>そのまま残す語句を選ぶ</b> — 変換される語がチップで一覧表示されます。クリックすると「そのまま」に切り替わります。</li>
+      <li><b>結果をコピーする</b> — 変換した語は紫、そのまま残した語は緑で色分けされます。ボタンひとつでコピーできます。</li>
+    </ol>
+
+    <div class="callout">
+      <b>例）</b>今日はとても暑いので、大きい氷をたくさん買いました。<br>
+      <b>→</b> 今日は全然寒いので、小さい氷を少し売りました。
+    </div>
+
+    <div class="ad-slot" data-ad-slot="content"></div>
+
+    <h2>変換したくない語句を守る</h2>
+    <p>固有名詞や決まった言い回しなど、変換されたくない語句は3つの方法で守れます。</p>
+    <dl>
+      <dt>1. 候補チップをクリックする</dt>
+      <dd>入力文から自動で見つかった語をひとつずつ切り替えます。「すべてそのままにする」「すべて変換する」で一括切り替えもできます。</dd>
+      <dt>2. 自分で語句を登録する</dt>
+      <dd>単語だけでなく文章まるごとも登録できます。たとえば「好きな食べ物は大きいケーキです」を登録すると、その一文だけ変換されません。</dd>
+      <dt>3. 自動除外にまかせる</dt>
+      <dd>URL・メールアドレス・<code>`コード`</code>・#タグ・@ユーザー名は、既定で変換されません。設定でオフにもできます。</dd>
+    </dl>
+    <p>登録した語句と入力文はブラウザ内（localStorage）に保存されるので、次に開いたときもそのまま使えます。</p>
+
+    <h2>どこまで変換できるのか</h2>
+    <p>
+      形態素解析は使わず、約470組の対義語ペアを長い語から順に当てていく方式です。
+      辞書には終止形だけを登録し、活用形は自動で展開しています。
+    </p>
+    <table>
+      <tr><th>種類</th><th>例</th></tr>
+      <tr><td>イ形容詞</td><td>大きい → 小さい / 大きく → 小さく / 大きかった → 小さかった</td></tr>
+      <tr><td>動詞（五段・一段）</td><td>買いました → 売りました / 笑った → 泣いた / 行きます → 来ます</td></tr>
+      <tr><td>名詞・形容動詞</td><td>成功 → 失敗 / 静か → 賑やか / 過去 → 未来</td></tr>
+      <tr><td>英語</td><td>big → small / stopped → started / Happy → Sad</td></tr>
+    </table>
+    <p>
+      変換元と変換先で活用の種類が違っても対応します（「増える」＝一段 → 「減る」＝五段 など）。
+      収録している対義語は<a href="index.html">変換ツール</a>のページ下部「収録している対義語を見る」から検索できます。
+    </p>
+
+    <h2>誤変換を減らすしくみ</h2>
+    <p>単純な文字列置換だと熟語の一部まで置き換わってしまうため、次のような判定を入れています。</p>
+    <ul>
+      <li>一文字の漢字（上・前 など）は、前後が漢字なら変換しない。<br>
+        → <code>上手</code> <code>上野</code> はそのまま、<code>上を見る</code> は <code>下を見る</code> に。</li>
+      <li>二文字以下の仮名（はい など）は、後ろに平仮名が続くなら語の途中とみなす。<br>
+        → <code>今日はいい天気</code> を <code>今日は悪い天気</code> に（「はい」を拾わない）。</li>
+      <li>保護した範囲に少しでも重なる語は変換しない。</li>
+    </ul>
+    <p>
+      それでも文脈によっては不自然な結果になります。うまくいかない語は、手順②で「そのまま」に切り替えてお使いください。
+    </p>
+
+    <h2>よくある質問</h2>
+    <dl>
+      <dt>入力した文章はどこかに送信されますか？</dt>
+      <dd>いいえ。変換はすべてブラウザの中で完結します。サーバーには送信していません。</dd>
+      <dt>スマートフォンでも使えますか？</dt>
+      <dd>使えます。画面幅に合わせてレイアウトが変わります。</dd>
+      <dt>収録されていない対義語があります。</dt>
+      <dd><a href="contact.html">お問い合わせ</a>から教えていただければ、辞書への追加を検討します。</dd>
+      <dt>商用利用はできますか？</dt>
+      <dd>変換した文章の利用に制限は設けていません。詳しくは<a href="terms.html">利用規約</a>をご確認ください。</dd>
+    </dl>
+    <div class="ad-slot" data-ad-slot="footer"></div>
+
+  </main>
+
+  <footer>
+    <div class="foot-links">
+      <a href="index.html">変換ツール</a>
+      <a href="about.html">このサイトについて</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
+      <a href="contact.html">お問い合わせ</a>
+    </div>
+    <p>© 2026 対義語ほんやく</p>
+  </footer>
+</div>
+
+<script src="src/site-config.js"></script>
+<script src="src/ads.js"></script>
+</body>
+</html>
