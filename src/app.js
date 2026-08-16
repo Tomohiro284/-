@@ -378,6 +378,14 @@
   /* ---------------- 起動 ---------------- */
 
   restore();
+
+  // ?text=... が付いていれば、保存内容より URL を優先する
+  // （対義語一覧のページから「この語を試す」で飛んできたとき）
+  try {
+    const fromUrl = new URLSearchParams(location.search).get('text');
+    if (fromUrl) el.input.value = fromUrl;
+  } catch (e) { /* 古いブラウザでは無視 */ }
+
   el.dictCount.textContent = Dictionary.entries.length;
   renderDictionary('');
   renderManual();

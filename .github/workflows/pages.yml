@@ -40,7 +40,8 @@ jobs:
       - name: 公開するファイルだけ集める
         run: |
           mkdir -p _site
-          cp index.html guide.html about.html privacy.html terms.html contact.html 404.html _site/
+          cp index.html antonym-list.html what-is-antonym.html guide.html \
+             about.html privacy.html terms.html contact.html 404.html _site/
           cp robots.txt sitemap.xml ads.txt _site/
           cp -r assets src _site/
 
