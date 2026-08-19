@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>お問い合わせ | 対義語ほんやく</title>
+<meta name="description" content="対義語ほんやくへのご意見・ご要望・不具合のご連絡はこちらから。">
+<link rel="canonical" href="https://tomohiro284.github.io/-/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="対義語ほんやく">
+<meta property="og:title" content="お問い合わせ | 対義語ほんやく">
+<meta property="og:description" content="対義語ほんやくへのご意見・ご要望・不具合のご連絡はこちらから。">
+<meta property="og:url" content="https://tomohiro284.github.io/-/contact.html">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1><a href="index.html" style="color:inherit;text-decoration:none"><span class="flip">対義語</span>ほんやく</a></h1>
+    <p class="lead">ご意見・ご要望・不具合のご連絡はこちらへ。</p>
+  <nav class="site-nav" aria-label="サイト内メニュー">
+    <a href="index.html">変換ツール</a>
+    <a href="antonym-list.html">対義語一覧</a>
+    <a href="what-is-antonym.html">対義語とは</a>
+    <a href="guide.html">使い方</a>
+  </nav>
+  </header>
+
+  <main class="page">
+    <h2>お問い合わせ</h2>
+    <p>
+      当サイトへのご意見・ご要望、不具合のご報告、掲載内容に関するお問い合わせは、
+      下記のメールアドレスまでご連絡ください。
+    </p>
+
+    <div class="callout">
+      <p style="margin:0">
+        <b>連絡先：</b><span id="contact-email">（site-config.js の email を設定してください）</span>
+      </p>
+    </div>
+
+    <p>次のような内容をお待ちしています。</p>
+    <ul>
+      <li>収録されていない対義語の追加リクエスト</li>
+      <li>変換結果が明らかにおかしい語の報告</li>
+      <li>表示崩れ・動作不良の報告（ご利用のブラウザ名もあわせてお知らせください）</li>
+      <li>掲載内容・著作権に関するご指摘</li>
+    </ul>
+
+    <p>
+      いただいたメールアドレスおよび内容は、返信と対応のためだけに使用します。
+      詳しくは<a href="privacy.html">プライバシーポリシー</a>をご確認ください。
+    </p>
+    <p>
+      内容によっては返信までお時間をいただく場合や、返信いたしかねる場合があります。あらかじめご了承ください。
+    </p>
+    <div class="ad-slot" data-ad-slot="footer"></div>
+
+  </main>
+
+  <footer>
+    <div class="foot-links">
+      <a href="index.html">変換ツール</a>
+      <a href="antonym-list.html">対義語一覧</a>
+      <a href="what-is-antonym.html">対義語とは</a>
+      <a href="guide.html">使い方</a>
+      <a href="about.html">このサイトについて</a>
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
+    </div>
+    <p>© 2026 対義語ほんやく</p>
+  </footer>
+</div>
+
+<script src="src/site-config.js"></script>
+<script src="src/ads.js"></script>
+<script>
+(function () {
+  var c = window.SITE_CONFIG || {};
+  var el = document.getElementById('contact-email');
+  if (c.email && el) {
+    var a = document.createElement('a');
+    a.href = 'mailto:' + c.email;
+    a.textContent = c.email;
+    el.textContent = '';
+    el.appendChild(a);
+  }
+})();
+</script>
+</body>
+</html>
