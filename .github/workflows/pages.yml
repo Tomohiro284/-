@@ -45,7 +45,11 @@ jobs:
           cp robots.txt sitemap.xml ads.txt _site/
           cp -r assets src _site/
 
+      # enablement: true にしておくと、Settings を触らなくても
+      # 初回実行時に Pages が自動で有効化される
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
