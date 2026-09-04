@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>対義語ほんやく — 入力した文章をまるごと反対の意味に</title>
-<meta name="description" content="入力した単語や文章を、まるごと対義語に置き換える翻訳サイト。そのまま残したい語句は変換前に選んでおけます。">
+<meta name="description" content="入力した単語や文章を、まるごと対義語に置き換える無料の変換ツール。そのまま残したい語句は変換前に選んでおけます。">
 <link rel="canonical" href="https://tomohiro284.github.io/-/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="対義語ほんやく">
@@ -13,7 +13,10 @@
 <meta property="og:url" content="https://tomohiro284.github.io/-/">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⇄</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@600;900&family=Roboto+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="assets/style.css">
 <script type="application/ld+json">
 {
@@ -32,109 +35,127 @@
 <body>
 <div class="wrap">
 
-  <header>
-    <h1><span class="flip">対義語</span>ほんやく</h1>
-    <p class="lead">
-      入力した単語も文章も、まるごと反対の意味に置き換えます。<br>
-      そのまま残したい語句は、変換前に選んでおけます。
-    </p>
+  <div class="topbar">
+    <a class="wordmark" href="index.html"><span class="pole-a">対</span>義語<span class="pole-b">ほんやく</span></a>
     <nav class="site-nav" aria-label="サイト内メニュー">
       <a href="index.html" aria-current="page">変換ツール</a>
       <a href="antonym-list.html">対義語一覧</a>
       <a href="what-is-antonym.html">対義語とは</a>
       <a href="guide.html">使い方</a>
     </nav>
-  </header>
+  </div>
 
-  <main>
-    <div class="grid">
+  <header class="hero">
+    <p class="eyebrow">ANTONYM TRANSLATOR</p>
+    <h1>文章を、<span class="pole-b">まるごと反対</span>に。</h1>
+    <p class="lead">
+      単語でも文章でも、入力したものを対義語に置き換えます。
+      そのまま残したい語句は、変換する前に選んでおけます。
+    </p>
 
-      <!-- ① 入力 -->
-      <section class="card">
-        <div class="card-head">
-          <span class="step">1</span>
-          <h2>原文を入力</h2>
-        </div>
-        <label class="sr-only" for="input">変換したい文章</label>
-        <textarea id="input" placeholder="ここに単語や文章を入力してください。&#10;例）今日はとても暑いので、大きい氷をたくさん買いました。" spellcheck="false"></textarea>
-        <div class="btn-row">
-          <button type="button" class="btn" id="sample">例文を入れる</button>
-          <button type="button" class="btn" id="clear">クリア</button>
-          <button type="button" class="btn" id="swap" title="変換結果を原文に移して、もう一度変換します">結果を原文に戻す</button>
-        </div>
-        <div class="stats">
-          <span>文字数 <b id="stat-chars">0</b></span>
-          <span>変換候補 <b id="stat-candidates">0</b> 語</span>
-        </div>
-      </section>
-
-      <!-- ③ 出力（画面上は右側に置くが、手順としては最後） -->
-      <section class="card">
-        <div class="card-head">
-          <span class="step">3</span>
-          <h2>変換結果</h2>
-          <span class="spacer"></span>
-          <label class="toggle"><input type="checkbox" id="highlight" checked> 色分け</label>
-        </div>
-        <div class="output" id="output" aria-live="polite"><span class="empty">ここに変換結果が表示されます。</span></div>
-        <div class="btn-row">
-          <button type="button" class="btn primary" id="copy">結果をコピー</button>
-        </div>
-        <div class="stats">
-          <span>変換した語 <b id="stat-converted">0</b></span>
-          <span>そのまま残した語 <b id="stat-kept">0</b></span>
-        </div>
-      </section>
+    <div class="demo">
+      <span class="demo-label">LIVE</span>
+      <div id="hero-demo">今日はとても暑いので、大きい氷をたくさん買いました。</div>
     </div>
 
-    <!-- ② そのまま残す設定 -->
-    <section class="card">
-      <div class="card-head">
-        <span class="step">2</span>
-        <h2>そのまま残す語句を選ぶ</h2>
-        <span class="spacer"></span>
-        <label class="toggle" title="URL・メールアドレス・`コード`・#タグ・@ユーザー名を自動で除外します">
-          <input type="checkbox" id="auto-protect" checked> URL・#タグなどを自動で除外
-        </label>
-      </div>
-      <p class="hint">
-        入力した文章から見つかった「変換される語」の一覧です。クリックすると <b>そのまま</b> に切り替わり、変換されなくなります。
-      </p>
+    <a class="hero-cta" href="#tool">試してみる <span aria-hidden="true">↓</span></a>
+  </header>
 
-      <div class="btn-row" style="margin-top:0">
-        <button type="button" class="btn" id="keep-all">すべてそのままにする</button>
-        <button type="button" class="btn" id="keep-none">すべて変換する</button>
+  <main id="tool">
+    <section class="block" style="margin-top:20px">
+      <div class="section-head">
+        <h2>変換する</h2>
+        <span class="note">入力すると、その場で変換されます</span>
       </div>
 
-      <p class="subhead">見つかった語（クリックで切り替え）</p>
-      <div class="chips" id="candidates"><p class="empty-note">原文を入力すると、ここに候補が並びます。</p></div>
+      <div class="deck">
+        <section class="pane pane-in">
+          <div class="pane-label"><span class="ord">01</span> 原文</div>
+          <label class="sr-only" for="input">変換したい文章</label>
+          <textarea id="input" placeholder="ここに単語や文章を入力してください。&#10;例）今日はとても暑いので、大きい氷をたくさん買いました。" spellcheck="false"></textarea>
+          <div class="btn-row">
+            <button type="button" class="btn" id="sample">例文を入れる</button>
+            <button type="button" class="btn" id="clear">クリア</button>
+            <button type="button" class="btn" id="swap" title="変換結果を原文に移して、もう一度変換します">結果を原文に戻す</button>
+          </div>
+          <div class="stats">
+            <span>文字数 <b id="stat-chars">0</b></span>
+            <span>変換候補 <b id="stat-candidates">0</b></span>
+          </div>
+        </section>
 
-      <p class="subhead">自分で指定する（単語でも文章でも可）</p>
-      <div class="add-row">
-        <label class="sr-only" for="manual">そのまま残したい語句</label>
-        <input type="text" id="manual" placeholder="例）好きな食べ物は大きいケーキです" autocomplete="off">
-        <button type="button" class="btn primary" id="manual-add">追加</button>
+        <div class="spine" aria-hidden="true"></div>
+
+        <section class="pane pane-out">
+          <div class="pane-label">
+            <span class="ord">03</span> 対義
+            <span style="flex:1"></span>
+            <label class="toggle"><input type="checkbox" id="highlight" checked> 色分け</label>
+          </div>
+          <div class="output" id="output" aria-live="polite"><span class="empty">ここに変換結果が表示されます。</span></div>
+          <div class="btn-row">
+            <button type="button" class="btn primary" id="copy">結果をコピー</button>
+          </div>
+          <div class="stats">
+            <span>変換した語 <b id="stat-converted">0</b></span>
+            <span>そのまま <b id="stat-kept">0</b></span>
+          </div>
+        </section>
       </div>
-      <div class="chips" id="manual-list"><p class="empty-note">まだ登録されていません。ここに登録した語句は、文中のどこにあってもそのまま残ります。</p></div>
+
+      <section class="keep-panel">
+        <div class="panel-head">
+          <span class="ord" style="font-family:var(--mono);font-size:.68rem;padding:1px 6px;border:1px solid var(--keep);border-radius:2px;color:var(--keep)">02</span>
+          <h2>そのまま残す語句</h2>
+          <span class="spacer"></span>
+          <label class="toggle" title="URL・メールアドレス・`コード`・#タグ・@ユーザー名を自動で除外します">
+            <input type="checkbox" id="auto-protect" checked> URL・#タグを自動で除外
+          </label>
+        </div>
+        <p class="hint">
+          入力文から見つかった「変換される語」です。クリックすると <b>そのまま</b> に切り替わり、変換されなくなります。
+        </p>
+
+        <div class="btn-row" style="margin-top:0">
+          <button type="button" class="btn" id="keep-all">すべてそのままにする</button>
+          <button type="button" class="btn" id="keep-none">すべて変換する</button>
+        </div>
+
+        <p class="subhead">見つかった語</p>
+        <div class="chips" id="candidates"><p class="empty-note">原文を入力すると、ここに候補が並びます。</p></div>
+
+        <p class="subhead">自分で指定する（単語でも文章でも可）</p>
+        <div class="add-row">
+          <label class="sr-only" for="manual">そのまま残したい語句</label>
+          <input type="text" id="manual" placeholder="例）好きな食べ物は大きいケーキです" autocomplete="off">
+          <button type="button" class="btn primary" id="manual-add">追加</button>
+        </div>
+        <div class="chips" id="manual-list"><p class="empty-note">まだ登録されていません。ここに登録した語句は、文中のどこにあってもそのまま残ります。</p></div>
+      </section>
+
+      <details class="dict">
+        <summary>収録している対義語を検索する（<span id="dict-count">0</span> ペア）</summary>
+        <div class="add-row" style="margin-top:14px">
+          <label class="sr-only" for="dict-search">辞書を検索</label>
+          <input type="text" id="dict-search" placeholder="語を検索（例：大きい / happy）" autocomplete="off">
+        </div>
+        <div class="dict-list" id="dict-list"></div>
+      </details>
     </section>
 
     <div class="ad-slot" data-ad-slot="content"></div>
 
-    <details class="dict">
-      <summary>収録している対義語を見る（<span id="dict-count">0</span> ペア）</summary>
-      <div class="add-row" style="margin-top:12px">
-        <label class="sr-only" for="dict-search">辞書を検索</label>
-        <input type="text" id="dict-search" placeholder="語を検索（例：大きい / happy）" autocomplete="off">
-      </div>
-      <div class="dict-list" id="dict-list"></div>
-    </details>
-
-    <section class="card" style="margin-top:18px">
-      <div class="card-head"><h2>このツールについて</h2></div>
-      <p class="hint" style="margin:0">
-        入力した単語や文章を、辞書にもとづいてまるごと対義語に置き換えます。会員登録もインストールも不要で、
-        入力内容はブラウザの中だけで処理されます。変換したくない語句を事前に選んでおけるのが特徴です。
-        詳しい手順や、変換できる語の種類は<a href="guide.html">使い方のページ</a>で説明しています。
+    <section class="block page">
+      <h2>このツールについて</h2>
+      <p>
+        辞書にもとづいて、入力した文章をまるごと対義語に置き換えます。会員登録もインストールも不要で、
+        入力した内容はブラウザの中だけで処理され、どこにも送信されません。
+        変換したくない語句を<b>変換前に</b>選んでおけるのが、このツールの特徴です。
+      </p>
+      <p>
+        収録している対義語は<a href="antonym-list.html">対義語一覧</a>で、
+        変換のしくみや細かい操作は<a href="guide.html">使い方</a>で説明しています。
+        そもそも対義語とは何か、なぜ一つに決まらないのかは<a href="what-is-antonym.html">対義語とは</a>をどうぞ。
       </p>
     </section>
 
@@ -152,7 +173,6 @@
       <a href="contact.html">お問い合わせ</a>
     </div>
     辞書ベースの簡易変換です。文脈によっては不自然になることがあります。<br>
-    入力内容はブラウザの中だけで処理され、どこにも送信されません。<br>
     © 2026 対義語ほんやく
   </footer>
 </div>
@@ -164,6 +184,7 @@
 <script src="src/conjugate.js"></script>
 <script src="src/converter.js"></script>
 <script src="src/app.js"></script>
+<script src="src/hero.js"></script>
 <script src="src/ads.js"></script>
 </body>
 </html>
