@@ -1,4 +1,4 @@
-name: Test & Deploy to GitHub Pages
+name: Test & Deploy
 
 on:
   push:
@@ -7,12 +7,10 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
-  group: pages
+  group: deploy
   cancel-in-progress: false
 
 jobs:
@@ -22,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - name: 変換エンジンのテスト
         run: node tests/run.js
 
@@ -31,9 +29,6 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: test
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -44,14 +39,21 @@ jobs:
              about.html privacy.html terms.html contact.html 404.html _site/
           cp robots.txt sitemap.xml ads.txt _site/
           cp -r assets src _site/
+          touch _site/.nojekyll
 
-      # enablement: true にしておくと、Settings を触らなくても
-      # 初回実行時に Pages が自動で有効化される
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      # Pages の「サイト作成」API は GITHUB_TOKEN では叩けないため、
+      # gh-pages ブランチへ push する方式で公開する。
+      # （このブランチが存在すると GitHub Pages が有効になる）
+      - name: gh-pages ブランチへ公開
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd _site
+          git init -q
+          git checkout -qb gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -qm "Deploy ${GITHUB_SHA:0:7}"
+          git push -qf "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+          echo "公開先: https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/"

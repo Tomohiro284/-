@@ -88,14 +88,16 @@ tests/run.js        変換エンジンのテスト
 
 ## インターネットに公開する
 
-GitHub Pages で無料で公開できます。サーバーの用意は不要です。
+**公開先: https://tomohiro284.github.io/-/**
 
-1. GitHub の **Settings → Pages** を開く
-2. **Source** を `GitHub Actions` にする
-3. `main` ブランチに push する（`.github/workflows/pages.yml` が走ります）
+`main` に push すると、`.github/workflows/pages.yml` がテストを走らせたうえで
+`gh-pages` ブランチへ成果物を push し、GitHub Pages がそれを配信します。
+設定画面での操作は不要です（`gh-pages` ブランチの存在で Pages が有効になります）。
 
-公開URLは `https://<ユーザー名>.github.io/<リポジトリ名>/` です。
-ワークフローはプルリクではテストのみ、`main` への push で公開まで行います。
+> **なぜ Actions の Pages デプロイを使わないのか**
+> `actions/deploy-pages` を使うには先に Pages サイトが作成されている必要がありますが、
+> その作成 API は `GITHUB_TOKEN` では叩けません（`Resource not accessible by integration`）。
+> ブランチ push 方式ならトークンの `contents: write` だけで完結します。
 
 ### 公開URLを変えるとき
 
